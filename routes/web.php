@@ -135,3 +135,17 @@ Route::post('/logout', function () {
     return redirect()->route('login');
 
 })->name('logout');
+
+// ==============================
+// KELOLA LAYANAN ADMIN
+// ==============================
+
+Route::get('/admin/layanan', function () {
+
+    if (!Session::get('admin_logged_in')) {
+        return redirect()->route('login');
+    }
+
+    return view('admin.layanan');
+
+})->name('admin.layanan');

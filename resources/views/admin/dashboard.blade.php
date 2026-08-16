@@ -517,13 +517,10 @@
             </a>
 
 
-            <a href="#" class="menu-item">
-
-                <span class="menu-icon">⚙</span>
-
-                Settings
-
-            </a>
+            <a href="{{ route('admin.layanan') }}" class="menu-item">
+    <span class="menu-icon">◈</span>
+    Layanan
+</a>
 
         </div>
 
