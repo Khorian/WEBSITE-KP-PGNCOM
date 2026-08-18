@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-    <!-- Contoh penerapannya di dalam body (setelah navbar) -->
-<main id="swup" class="transition-fade">
-    <!-- SEMUA KONTEN UTAMA HALAMAN ANDA DI SINI -->
-</main>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +27,7 @@
 
     <!-- HERO SECTION -->
     <section class="bg-gradient-to-r from-[#0b1c3d] via-blue-700 to-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div data-aos="zoom-in" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
                 <span class="inline-block px-3 py-1 bg-blue-900/60 text-blue-400 text-xs font-semibold rounded-full tracking-wide uppercase border border-blue-800">
                     Solusi ICT & Telekomunikasi
@@ -299,5 +294,14 @@
             },
         });
     </script>
+
+    <!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800, // Durasi animasi dalam milidetik (0.8 detik)
+    once: true,    // Animasi hanya berjalan sekali ketika discroll pertama kali
+  });
+</script>
 </body>
 </html>

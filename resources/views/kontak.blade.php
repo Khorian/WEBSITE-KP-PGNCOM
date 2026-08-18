@@ -6,7 +6,7 @@
     <title>Kontak Kami - PGASCOM Regional Office Lampung</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo-pgascom.png') }}" type="image/png">
+<link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
