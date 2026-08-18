@@ -490,13 +490,10 @@
             </a>
 
 
-            <a href="#" class="menu-item">
-
-                <span class="menu-icon">◈</span>
-
-                Layanan
-
-            </a>
+                        <a href="{{ route('admin.layanan') }}" class="menu-item">
+    <span class="menu-icon">◈</span>
+    Layanan
+</a>
 
 
             <a href="{{ route('admin.berita') }}" class="menu-item">
@@ -512,11 +509,7 @@
 
             </a>
 
-
-            <a href="{{ route('admin.layanan') }}" class="menu-item">
-    <span class="menu-icon">◈</span>
-    Layanan
-</a>
+  
 
         </div>
 
