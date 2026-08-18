@@ -499,13 +499,9 @@
             </a>
 
 
-            <a href="#" class="menu-item">
-
-                <span class="menu-icon">▤</span>
-
-                Berita dan kegiatan
-
-            </a>
+            <a href="{{ route('admin.berita') }}" class="menu-item">
+    ▤ Berita dan kegiatan
+</a>
 
 
             <a href="#" class="menu-item">

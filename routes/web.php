@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('home');
@@ -29,10 +31,6 @@ Route::get('/kontak', function () {
     return view('kontak'); // Pastikan file kontak.blade.php sudah dibuat di resources/views/
 })->name('kontak');
 
-
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 
 // ==============================
@@ -149,3 +147,33 @@ Route::get('/admin/layanan', function () {
     return view('admin.layanan');
 
 })->name('admin.layanan');
+
+Route::get('/admin/layanan/tambah', function () {
+
+    if (!Session::get('admin_logged_in')) {
+        return redirect()->route('login');
+    }
+
+    return view('admin.layanan-create');
+
+})->name('admin.layanan.create');
+
+Route::get('/admin/berita', function () {
+
+    if (!Session::get('admin_logged_in')) {
+        return redirect()->route('login');
+    }
+
+    return view('admin.berita');
+
+})->name('admin.berita');
+
+Route::get('/admin/berita/tambah', function () {
+
+    if (!Session::get('admin_logged_in')) {
+        return redirect()->route('login');
+    }
+
+    return view('admin.berita-create');
+
+})->name('admin.berita.create');

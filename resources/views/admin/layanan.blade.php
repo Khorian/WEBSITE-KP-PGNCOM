@@ -753,14 +753,13 @@
                 </div>
 
 
-                <button
-                    class="add-button"
-                    onclick="alert('Form Tambah Layanan akan dibuat pada tahap berikutnya.')"
-                >
-
-                    ＋ Tambahkan Layanan
-
-                </button>
+                <a
+    href="{{ route('admin.layanan.create') }}"
+    class="add-button"
+    style="text-decoration:none; display:inline-block;"
+>
+    ＋ Tambahkan Layanan
+</a>
 
 
             </div>
