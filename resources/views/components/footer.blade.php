@@ -1,8 +1,27 @@
-<footer class="bg-[#0b1c3d] text-gray-300 pt-0 pb-8 border-t border-blue-950">
-    
-    <!-- Bagian Call to Action (CTA) di atas Footer -->
-    <div class="bg-gradient-to-r from-blue-700 to-blue-600 py-16 px-6 text-center text-white mb-16">
-        <div class="max-w-3xl mx-auto space-y-4">
+<!-- 1. Bagian Call to Action (CTA) Mengambang -->
+<div class="max-w-7xl mx-auto px-6 relative z-20 mt-6 mb-8">
+    <!-- Style Animasi Floating -->
+    <style>
+    @keyframes floatAnimation {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+    .animate-floating {
+        animation: floatAnimation 4s ease-in-out infinite;
+    }
+    </style>
+
+    <div class="bg-gradient-to-r from-blue-700 to-blue-600 py-14 px-8 text-center text-white rounded-3xl shadow-2xl shadow-blue-600/30 max-w-5xl mx-auto animate-floating relative overflow-hidden border border-blue-500/30">
+        
+        <!-- Efek Cahaya Dekoratif -->
+        <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-black/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto space-y-4 relative z-10">
             <h2 class="text-2xl md:text-3xl font-bold tracking-tight">
                 Siap Membawa Bisnis Anda ke Level Berikutnya?
             </h2>
@@ -10,23 +29,28 @@
                 Tim kami siap membantu merancang solusi jaringan serat optik, cloud hosting regional, dan integrasi sistem yang disesuaikan dengan kebutuhan bisnis Anda.
             </p>
             <div class="pt-2">
-                <a href="{{ url('/kontak') }}" class="inline-block px-6 py-3 bg-[#ff6600] hover:bg-[#e65c00] text-white font-medium text-xs md:text-sm rounded-lg transition-colors shadow-lg shadow-orange-600/30">
+                <a href="{{ url('/kontak') }}" class="inline-block px-6 py-3 bg-[#ff6600] hover:bg-[#e65c00] text-white font-medium text-xs md:text-sm rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-orange-600/30">
                     Hubungi Kami !
                 </a>
             </div>
         </div>
     </div>
+</div>
 
+<!-- 2. Bagian Footer Utama -->
+<footer class="bg-[#0b1c3d] text-gray-300 pt-16 pb-8 border-t border-blue-950 relative z-10 mt-12">
+    
     <!-- Konten Utama Footer -->
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 px-6 md:px-12">
         
-        <!-- Kolom 1: Logo, Deskripsi & Sosial Media (Lebar 4 kolom) -->
+        <!-- Kolom 1: Logo, Deskripsi & Sosial Media -->
         <div class="md:col-span-4 space-y-4">
             <div class="flex items-center space-x-3">
                 <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-8 w-auto object-contain">
-                <span class="font-bold text-white text-lg tracking-wide">PGAS COM</span>
+                <span class="font-bold text-white text-xl tracking-wide">PGAS COM</span>
             </div>
-            <p class="text-xs text-gray-400 leading-relaxed pr-4">
+            <!-- Diubah ke text-sm (normal) -->
+            <p class="text-sm text-gray-400 leading-relaxed pr-4">
                 PT PGAS Telekomunikasi Nusantara adalah perusahaan telekomunikasi dan ICT terkemuka yang melayani kebutuhan digital di seluruh Indonesia.
             </p>
             <!-- Ikon Sosial Media -->
@@ -56,12 +80,14 @@
                     </svg>
                 </a>
             </div>
-        </div> <!-- <-- Penutup Kolom 1 yang sebelumnya kurang -->
+        </div>
 
-        <!-- Kolom 2: Menu Beranda (Lebar 2 kolom) -->
+        <!-- Kolom 2: Menu Beranda -->
         <div class="md:col-span-2 space-y-3">
-            <h3 class="text-white font-semibold text-sm">Beranda</h3>
-            <ul class="space-y-2 text-xs text-gray-400">
+            <!-- Diubah ke text-base -->
+            <h3 class="text-white font-semibold text-base">Beranda</h3>
+            <!-- Diubah ke text-sm -->
+            <ul class="space-y-2 text-sm text-gray-400">
                 <li><a href="{{ url('/profil') }}" class="hover:text-white transition-colors">Profil perusahaan</a></li>
                 <li><a href="{{ url('/layanan') }}" class="hover:text-white transition-colors">Layanan</a></li>
                 <li><a href="{{ url('/berita') }}" class="hover:text-white transition-colors">Berita dan kegiatan</a></li>
@@ -69,10 +95,12 @@
             </ul>
         </div>
 
-        <!-- Kolom 3: Layanan (Lebar 2 kolom) -->
+        <!-- Kolom 3: Layanan -->
         <div class="md:col-span-2 space-y-3">
-            <h3 class="text-white font-semibold text-sm">Layanan</h3>
-            <ul class="space-y-2 text-xs text-gray-400">
+            <!-- Diubah ke text-base -->
+            <h3 class="text-white font-semibold text-base">Layanan</h3>
+            <!-- Diubah ke text-sm -->
+            <ul class="space-y-2 text-sm text-gray-400">
                 <li><a href="#" class="hover:text-white transition-colors">GITA</a></li>
                 <li><a href="#" class="hover:text-white transition-colors">AMBER</a></li>
                 <li><a href="#" class="hover:text-white transition-colors">SORAIA</a></li>
@@ -81,10 +109,12 @@
             </ul>
         </div>
 
-        <!-- Kolom 4: Kontak Kami (Lebar 4 kolom) -->
+        <!-- Kolom 4: Kontak Kami -->
         <div class="md:col-span-4 space-y-3">
-            <h3 class="text-white font-semibold text-sm">Kontak Kami</h3>
-            <div class="space-y-3 text-xs text-gray-400">
+            <!-- Diubah ke text-base -->
+            <h3 class="text-white font-semibold text-base">Kontak Kami</h3>
+            <!-- Diubah ke text-sm -->
+            <div class="space-y-3 text-sm text-gray-400">
                 <div class="flex items-start space-x-2.5">
                     <svg class="w-4 h-4 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -110,11 +140,7 @@
     </div>
 
     <!-- Garis Pembatas & Hak Cipta Bawah -->
-    <div class="max-w-7xl mx-auto mt-12 pt-6 px-6 md:px-12 border-t border-blue-950 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500">
+    <div class="max-w-7xl mx-auto mt-12 pt-6 px-6 md:px-12 border-t border-blue-950 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
         <p>&copy; {{ date('Y') }} PT PGASCOM RO Lampung. All rights reserved.</p>
-        <div class="flex space-x-6 mt-3 sm:mt-0">
-            <a href="{{ url('/privacy-policy') }}" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
-            <a href="{{ url('/terms-of-service') }}" class="hover:text-gray-400 transition-colors">Terms of Service</a>
-        </div>
     </div>
 </footer>

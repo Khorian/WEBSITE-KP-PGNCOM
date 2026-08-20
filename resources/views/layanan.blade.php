@@ -17,7 +17,7 @@
     @include('components.navbar')
 
     <!-- HERO BANNER LAYANAN -->
-    <section class="bg-gradient-to-r from-[#0b1c3d] via-blue-700 to-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
+    <section class="bg-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
         <div class="max-w-7xl mx-auto space-y-3">
             <!-- Breadcrumb -->
             <div class="flex items-center space-x-2 text-xs md:text-sm text-gray-300">

@@ -25,35 +25,35 @@
     <!-- Include Navbar -->
     @include('components.navbar')
 
-    <!-- HERO SECTION -->
-    <section class="bg-gradient-to-r from-[#0b1c3d] via-blue-700 to-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
-        <div data-aos="zoom-in" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="inline-block px-3 py-1 bg-blue-900/60 text-blue-400 text-xs font-semibold rounded-full tracking-wide uppercase border border-blue-800">
-                    Solusi ICT & Telekomunikasi
-                </span>
-                <h1 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-                    Solusi ICT Terpercaya untuk Lampung
-                </h1>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed">
-                    PT PGAS Telekomunikasi Nusantara Regional Lampung menyediakan layanan telekomunikasi dan infrastruktur ICT berkualitas tinggi untuk mendukung pertumbuhan bisnis di seluruh Provinsi Lampung.
-                </p>
-                <div>
-                    <a href="#layanan" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors shadow-lg shadow-blue-600/30">
-                        Pelajari lebih lanjut
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-900/50">
-                    <img src="{{ asset('images/pgncom.png') }}" alt="Gedung PGASCOM Lampung" class="w-full h-auto object-cover">
-                </div>
+<!-- HERO SECTION -->
+<section class="bg-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
+    <div data-aos="zoom-in" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+            <span class="inline-block px-3 py-1 bg-blue-700/60 text-blue-200 text-xs font-semibold rounded-full tracking-wide uppercase border border-blue-500/30">
+                Solusi ICT & Telekomunikasi
+            </span>
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+                Solusi ICT Terpercaya untuk Lampung
+            </h1>
+            <p class="text-blue-100 text-sm md:text-base leading-relaxed">
+                PT PGAS Telekomunikasi Nusantara Regional Lampung menyediakan layanan telekomunikasi dan infrastruktur ICT berkualitas tinggi untuk mendukung pertumbuhan bisnis di seluruh Provinsi Lampung.
+            </p>
+            <div>
+                <a href="#layanan" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 hover:bg-blue-50 font-medium text-sm rounded-lg transition-colors shadow-lg">
+                    Pelajari lebih lanjut
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
             </div>
         </div>
-    </section>
+        <div class="relative">
+            <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-500/30">
+                <img src="{{ asset('images/pgncom.png') }}" alt="Gedung PGASCOM Lampung" class="w-full h-auto object-cover">
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- PROFIL PERUSAHAAN SECTION -->
     <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center">
@@ -207,7 +207,7 @@
         <div class="text-center mb-12">
             <span class="text-blue-600 text-xs font-semibold uppercase tracking-widest">Berita & Kegiatan</span>
             <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-2">Informasi Terkini</h2>
-            <p class="text-gray-500 text-xs mt-1">Lihat semua/ports ></p>
+          
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
