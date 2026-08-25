@@ -10,7 +10,7 @@
         <a href="{{ url('/') }}" class="flex items-center space-x-3 focus:outline-none">
             <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-10 w-auto object-contain">
             <div class="flex flex-col">
-                <span class="font-bold text-gray-900 text-lg tracking-tight leading-none">PGASCOM</span>
+                <span class="font-bold text-gray-900 text-lg tracking-tight leading-none">PGNCOM</span>
                 <span class="text-[10px] font-semibold text-blue-600 tracking-wider mt-0.5">REGIONAL OFFICE LAMPUNG</span>
             </div>
         </a>

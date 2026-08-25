@@ -39,13 +39,13 @@
                 PT PGAS Telekomunikasi Nusantara Regional Lampung menyediakan layanan telekomunikasi dan infrastruktur ICT berkualitas tinggi untuk mendukung pertumbuhan bisnis di seluruh Provinsi Lampung.
             </p>
             <div>
-                <a href="#layanan" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 hover:bg-blue-50 font-medium text-sm rounded-lg transition-colors shadow-lg">
-                    Pelajari lebih lanjut
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                </a>
-            </div>
+    <a href="{{ url('/profil') }}" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 hover:bg-blue-50 font-medium text-sm rounded-lg transition-colors shadow-lg">
+        Pelajari lebih lanjut
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+    </a>
+</div>
         </div>
         <div class="relative">
             <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-500/30">

@@ -47,7 +47,7 @@
         <div class="md:col-span-4 space-y-4">
             <div class="flex items-center space-x-3">
                 <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-8 w-auto object-contain">
-                <span class="font-bold text-white text-xl tracking-wide">PGAS COM</span>
+                <span class="font-bold text-white text-xl tracking-wide">PGNCOM</span>
             </div>
             <!-- Diubah ke text-sm (normal) -->
             <p class="text-sm text-gray-400 leading-relaxed pr-4">
