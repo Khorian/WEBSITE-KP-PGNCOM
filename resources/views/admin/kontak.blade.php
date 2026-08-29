@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Kontak - PGAS TELEKOM</title>
+    <title>Pesan Masuk - PGAS TELEKOM</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>[x-cloak] { display: none !important; }</style>
 </head>
-<body class="bg-slate-100 font-sans antialiased text-slate-800">
+<body class="bg-slate-100 font-sans antialiased text-slate-800" 
+      x-data="kontakAdmin({{ json_encode(($pesanList ?? collect())->pluck('status', 'id')) }})">
 
     <div class="flex min-h-screen">
 
-        <!-- Sidebar Kiri (Dark Mode) -->
+        <!-- Sidebar Kiri -->
         <aside class="w-64 bg-[#0b1324] text-slate-300 flex flex-col justify-between shrink-0 min-h-screen">
             <div>
-                <!-- Brand Header / Logo -->
                 <div class="p-5 flex items-center space-x-3 border-b border-slate-800/40">
                     <div class="bg-white px-2 py-1.5 rounded-lg shadow-sm flex items-center justify-center shrink-0">
                         <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-6 w-auto object-contain">
@@ -25,216 +26,181 @@
                     </div>
                 </div>
 
-                <!-- Navigation Menu -->
                 <nav class="px-3 py-4 space-y-1">
-                    <!-- Dashboard -->
-                    <a href="/admin/dashboard" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition">
-                        <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-                        </svg>
-                        <span>Dashboard</span>
-                    </a>
-
-                   <!-- Profil Perusahaan -->
-<a href="/admin/profil" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition">
-    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-    </svg>
-    <span>Profil Perusahaan</span>
-</a>
-                    <!-- Layanan -->
-                    <a href="/admin/layanan" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition">
-                        <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                        </svg>
-                        <span>Layanan</span>
-                    </a>
-
-                    <!-- Berita dan kegiatan -->
-                    <a href="/admin/berita" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                            </svg>
-                            <span>Berita dan kegiatan</span>
-                        </div>
-                    </a>
-
-                    <!-- Kontak Kami (Menu Aktif) -->
-                    <a href="/admin/kontak" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-[#1e293b] text-white font-semibold text-sm transition">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                        <span>Kontak Kami</span>
-                    </a>
-
-                   <!-- Kelola pengguna -->
-<a href="/admin/pengguna" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition">
-    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-    </svg>
-    <span>Kelola pengguna</span>
-</a>
+                    <a href="/admin/dashboard" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition"><span>Dashboard</span></a>
+                    <a href="/admin/profil" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition"><span>Profil Perusahaan</span></a>
+                    <a href="/admin/layanan" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition"><span>Layanan</span></a>
+                    <a href="/admin/berita" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition"><span>Berita dan kegiatan</span></a>
+                    <a href="/admin/kontak" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-[#1e293b] text-white font-semibold text-sm transition"><span>Pesan Masuk</span></a>
+                    <a href="/admin/pengguna" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 font-medium text-sm transition"><span>Kelola pengguna</span></a>
                 </nav>
             </div>
 
-            <!-- Profile Admin Footer -->
             <div class="p-4 border-t border-slate-800/60 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <img class="w-9 h-9 rounded-full object-cover border border-slate-700" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80" alt="Admin Avatar">
+                    <img class="w-9 h-9 rounded-full object-cover border border-slate-700" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80" alt="Admin">
                     <div>
                         <h4 class="text-xs font-bold text-white">Admin PGAS</h4>
                         <p class="text-[10px] text-slate-400">Super Admin</p>
                     </div>
                 </div>
-                <button type="button" class="text-slate-400 hover:text-white p-1 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-                    </svg>
-                </button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-slate-400 hover:text-rose-400 p-1 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+                </form>
             </div>
         </aside>
 
-        <!-- Main Content Area -->
-        <main class="flex-1 p-8 overflow-y-auto pb-28">
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto pb-28 relative">
 
-            <!-- Breadcrumb Navigation -->
-            <nav class="flex text-xs font-medium text-slate-400 mb-2 space-x-2">
-                <a href="/admin/dashboard" class="hover:text-slate-600 transition">Dashboard</a>
-                <span>&rsaquo;</span>
-                <span class="text-sky-600 font-semibold">kontak kami</span>
-            </nav>
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Pesan Masuk</h1>
+                    <p class="text-xs text-slate-500 mt-1">{{ count($pesanList ?? []) }} Pesan diterima</p>
+                </div>
+            </div>
 
-            <!-- Page Title -->
-            <h1 class="text-2xl font-bold text-slate-900 mb-6">Kelola Kontak</h1>
+            @if(session('success'))
+                <div class="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-xl font-semibold">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-            <!-- Form Container -->
-            <form action="#" method="POST" class="space-y-6">
+            <!-- Filter Bar Form -->
+            <form method="GET" action="{{ route('admin.kontak') }}" class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 mb-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-3 flex-1">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="cari nama, email, subjek..." class="px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:border-sky-500">
+
+                    <select name="status" onchange="this.form.submit()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none">
+                        <option value="">Status: Semua</option>
+                        <option value="Belum Dibaca" {{ request('status') == 'Belum Dibaca' ? 'selected' : '' }}>Belum Dibaca</option>
+                        <option value="Sudah Dibaca" {{ request('status') == 'Sudah Dibaca' ? 'selected' : '' }}>Sudah Dibaca</option>
+                    </select>
+                    
+                    @if(request('search') || request('status'))
+                        <a href="{{ route('admin.kontak') }}" class="text-xs text-rose-500 hover:underline font-semibold">Reset Filter</a>
+                    @endif
+                </div>
+            </form>
+
+            <!-- Table Pesan Masuk -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden mb-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-50/70 border-b border-slate-200/80 text-slate-500 uppercase font-semibold text-[10px] tracking-wider">
+                                <th class="p-4 w-10 text-center">
+                                    <input type="checkbox" @change="toggleSelectAll($event)" class="rounded border-slate-300 text-sky-600 cursor-pointer">
+                                </th>
+                                <th class="p-4">PENGIRIM</th>
+                                <th class="p-4">SUBJEK</th>
+                                <th class="p-4">PESAN</th>
+                                <th class="p-4">TANGGAL</th>
+                                <th class="p-4">STATUS</th>
+                                <th class="p-4 text-center">AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
+                            @forelse ($pesanList ?? [] as $item)
+                                <tr class="hover:bg-slate-50/80 transition {{ $item->status == 'Belum Dibaca' ? 'bg-sky-50/40 font-semibold' : '' }}">
+                                    <td class="p-4 text-center">
+                                        <input type="checkbox" value="{{ $item->id }}" x-model="selectedItems" class="rounded border-slate-300 text-sky-600 cursor-pointer">
+                                    </td>
+                                    <td class="p-4">
+                                        <div class="text-slate-900 font-bold">{{ $item->nama }}</div>
+                                        <div class="text-[11px] text-slate-400 font-normal">{{ $item->email }}</div>
+                                    </td>
+                                    <td class="p-4 text-slate-900 font-bold max-w-xs truncate">{{ $item->subjek }}</td>
+                                    <td class="p-4 text-slate-500 max-w-sm truncate">{{ $item->pesan }}</td>
+                                    <td class="p-4 text-slate-500">{{ $item->created_at->format('d M Y H:i') }}</td>
+                                    <td class="p-4">
+                                        <span class="px-2.5 py-1 rounded-md text-[10px] font-bold {{ $item->status == 'Belum Dibaca' ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600' }}">
+                                            {{ $item->status }}
+                                        </span>
+                                    </td>
+                                    <td class="p-4 text-center space-x-2">
+                                        @if($item->status == 'Belum Dibaca')
+                                            <form action="{{ route('admin.kontak.baca', $item->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="text-sky-600 hover:text-sky-800 font-bold text-[11px]" title="Tandai Sudah Dibaca">Tandai Dibaca</button>
+                                            </form>
+                                        @endif
+                                        <form action="{{ route('admin.kontak.hapus', $item->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-slate-400 hover:text-rose-500 transition ml-1" title="Hapus">
+                                                <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="p-8 text-center text-slate-400">Belum ada pesan masuk.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Floating Batch Action Bar -->
+            <form id="batchForm" method="POST" action="{{ route('admin.kontak.batch') }}">
                 @csrf
+                <input type="hidden" name="ids" :value="selectedItems.join(',')">
+                <input type="hidden" name="action" x-ref="batchActionInput">
 
-                <!-- Row 1: Informasi Alamat & Nomor Telepon -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <!-- Box 1: Informasi Alamat -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center space-x-2 mb-4">
-                                <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                                <h3 class="font-bold text-sm text-slate-800">Informasi Alamat</h3>
-                            </div>
-
-                            <div>
-                                <label for="alamat" class="block text-xs font-semibold text-slate-500 mb-2">Alamat Lengkap</label>
-                                <textarea id="alamat" name="alamat" rows="3"
-                                    class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 leading-relaxed focus:outline-none focus:bg-white focus:border-sky-500 transition resize-none">Jl. Sam Ratulangi No.15, Penengahan,
-Kec. Tj. Karang Pusat, Kota Bandar Lampung, Lampung 35122</textarea>
-                            </div>
-                        </div>
+                <div x-show="selectedItems.length > 0" x-cloak
+                     class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#0b1324] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-6 z-50">
+                    
+                    <div class="flex items-center space-x-2.5">
+                        <span class="w-6 h-6 rounded-full bg-[#00a3e0] text-white text-xs font-bold flex items-center justify-center" x-text="selectedItems.length"></span>
+                        <span class="text-xs font-medium text-slate-200">Pesan dipilih</span>
                     </div>
 
-                    <!-- Box 2: Nomor Telepon -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                            </svg>
-                            <h3 class="font-bold text-sm text-slate-800">Nomor Telepon</h3>
-                        </div>
-
-                        <div>
-                            <label for="telepon_kantor" class="block text-xs font-semibold text-slate-500 mb-1.5">Telepon Kantor</label>
-                            <input type="text" id="telepon_kantor" name="telepon_kantor" value="(021) 39733645"
-                                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                        </div>
-
-                        <div>
-                            <label for="whatsapp" class="block text-xs font-semibold text-slate-500 mb-1.5">WhatsApp</label>
-                            <input type="text" id="whatsapp" name="whatsapp" value="(021) 39733645"
-                                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Row 2: Email & Jam Operasional -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <!-- Box 3: Email -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                            <h3 class="font-bold text-sm text-slate-800">Email</h3>
-                        </div>
-
-                        <div>
-                            <label for="email_utama" class="block text-xs font-semibold text-slate-500 mb-1.5">Email Utama</label>
-                            <input type="email" id="email_utama" name="email_utama" value="regional.lampung@pgastelkom.co.id"
-                                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                        </div>
-
-                        <div>
-                            <label for="email_support" class="block text-xs font-semibold text-slate-500 mb-1.5">Email Support</label>
-                            <input type="email" id="email_support" name="email_support" value="support.lampung@pgastelkom.co.id"
-                                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                        </div>
-                    </div>
-
-                    <!-- Box 4: Jam Operasional -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <h3 class="font-bold text-sm text-slate-800">Jam Operasional</h3>
-                        </div>
-
-                        <div>
-                            <label for="jam_senin_kamis" class="block text-xs font-semibold text-slate-500 mb-1.5">Senin – Kamis</label>
-                            <input type="text" id="jam_senin_kamis" name="jam_senin_kamis" value="07.30 – 16.00 WIB"
-                                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                        </div>
-
-                        <div>
-                            <label for="jam_jumat" class="block text-xs font-semibold text-slate-500 mb-1.5">Jumat</label>
-                            <input type="text" id="jam_jumat" name="jam_jumat" value="07.30 - 16.30"
-                                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Row 3: Google Maps URL -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm">
-                    <h3 class="font-bold text-sm text-slate-800 mb-3">Google Maps URL</h3>
-                    <input type="text" name="google_maps_url" value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.5!2d105.2677!3d-5.4297"
-                        class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-sky-500 transition">
-                </div>
-
-                <!-- Action Button Card -->
-                <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
-                    <a href="/admin/dashboard" class="text-xs font-semibold text-slate-500 hover:text-slate-800 transition pl-2">
-                        Cancel
-                    </a>
-
-                    <div class="flex items-center space-x-3">
-                        <button type="button" class="px-5 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-                            Simpan sebagai dtaf
+                    <div class="flex items-center space-x-2">
+                        <button type="button" @click="submitBatch('read')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs px-3.5 py-2 rounded-lg transition cursor-pointer">
+                            Tandai Sudah Dibaca
                         </button>
-                        <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#0f6cbd] hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
-                            Perbaharui Kontak
+
+                        <button type="button" @click="submitBatch('unread')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs px-3.5 py-2 rounded-lg transition cursor-pointer">
+                            Tandai Belum Dibaca
+                        </button>
+
+                        <button type="button" @click="if(confirm('Apakah Anda yakin ingin menghapus pesan terpilih?')) submitBatch('delete')" class="bg-red-500 hover:bg-red-600 text-white font-medium text-xs px-3.5 py-2 rounded-lg transition cursor-pointer">
+                            Hapus item dipilih
                         </button>
                     </div>
                 </div>
-
             </form>
 
         </main>
     </div>
 
+    <script>
+        function kontakAdmin(statusMap) {
+            return {
+                selectedItems: [],
+                statusMap: statusMap || {},
+                toggleSelectAll(e) {
+                    const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+                    this.selectedItems = [];
+                    if (e.target.checked) {
+                        checkboxes.forEach(cb => {
+                            cb.checked = true;
+                            this.selectedItems.push(String(cb.value));
+                        });
+                    } else {
+                        checkboxes.forEach(cb => cb.checked = false);
+                    }
+                },
+                submitBatch(actionType) {
+                    this.$refs.batchActionInput.value = actionType;
+                    document.getElementById('batchForm').submit();
+                }
+            }
+        }
+    </script>
 </body>
 </html>

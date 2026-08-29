@@ -58,126 +58,45 @@
             </div>
         </div>
 
-        <!-- Grid Kartu Berita -->
+<!-- Grid Kartu Berita (Dinamis dari Database) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- Berita 1 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <img src="{{ asset('images/news-1.png') }}" alt="Berita 1" class="w-full h-48 object-cover">
-                    <div class="p-6 space-y-3">
-                        <span class="inline-block text-[10px] font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md uppercase tracking-wider">Infrastruktur</span>
-                        <h3 class="font-bold text-gray-900 text-base leading-snug">
-                            PGAS Telkom Lampung Berhasil Tingkatkan Kapasitas Jaringan Fiber Optik
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            Regional Office Lampung berhasil menyelesaikan proyek peningkatan kapasitas jaringan...
-                        </p>
+            @forelse ($beritas as $item)
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between transition-transform hover:-translate-y-1">
+                    <div>
+                        <!-- Gambar Berita Real -->
+                        <img src="{{ $item->gambar ? asset($item->gambar) : asset('images/news-1.png') }}" 
+                             alt="{{ $item->judul }}" 
+                             class="w-full h-48 object-cover">
+                        
+                        <div class="p-6 space-y-3">
+                            <span class="inline-block text-[10px] font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md uppercase tracking-wider">
+                                {{ $item->kategori }}
+                            </span>
+                            <h3 class="font-bold text-gray-900 text-base leading-snug line-clamp-2">
+                                {{ $item->judul }}
+                            </h3>
+                            <p class="text-gray-600 text-xs leading-relaxed line-clamp-3">
+                                {{ Str::limit(strip_tags($item->konten), 120) }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 pt-0 flex items-center justify-between text-xs">
+                        <a href="#" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
+                            Lihat selengkapnya 
+                            <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <span class="text-gray-400 text-[11px]">{{ $item->created_at->format('d M Y') }}</span>
                     </div>
                 </div>
-                <div class="p-6 pt-0 flex items-center justify-between text-xs">
-                    <a href="#" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
-                        Lihat selengkapnya 
-                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <span class="text-gray-400 text-[11px]">24 Juli 2026</span>
+            @empty
+                <div class="col-span-1 md:col-span-3 text-center py-12 text-gray-400">
+                    <p class="text-sm font-medium">Belum ada berita yang dipublikasikan saat ini.</p>
                 </div>
-            </div>
-
-            <!-- Berita 2 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <img src="{{ asset('images/news-2.png') }}" alt="Berita 2" class="w-full h-48 object-cover">
-                    <div class="p-6 space-y-3">
-                        <span class="inline-block text-[10px] font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md uppercase tracking-wider">Kegiatan</span>
-                        <h3 class="font-bold text-gray-900 text-base leading-snug">
-                            Workshop Keamanan Siber untuk Mitra Bisnis Regional Lampung
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            PT PGAS Telekomunikasi Nusantara Regional Lampung menggelar workshop keamanan siber yang diikuti oleh lebih dari...
-                        </p>
-                    </div>
-                </div>
-                <div class="p-6 pt-0 flex items-center justify-between text-xs">
-                    <a href="#" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
-                        Lihat selengkapnya 
-                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <span class="text-gray-400 text-[11px]">18 Juli 2026</span>
-                </div>
-            </div>
-
-            <!-- Berita 3 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <img src="{{ asset('images/news-3.png') }}" alt="Berita 3" class="w-full h-48 object-cover">
-                    <div class="p-6 space-y-3">
-                        <span class="inline-block text-[10px] font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md uppercase tracking-wider">Produk</span>
-                        <h3 class="font-bold text-gray-900 text-base leading-snug">
-                            Peluncuran Layanan Internet Corporate Generasi Terbaru di Lampung
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            Merespons kebutuhan konektivitas yang terus berkembang, PGAS Telkom resmi meluncurkan layanan Internet Corporate...
-                        </p>
-                    </div>
-                </div>
-                <div class="p-6 pt-0 flex items-center justify-between text-xs">
-                    <a href="#" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
-                        Lihat selengkapnya 
-                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <span class="text-gray-400 text-[11px]">10 Juli 2026</span>
-                </div>
-            </div>
-
-            <!-- Berita 4 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <img src="{{ asset('images/news-1.png') }}" alt="Berita 4" class="w-full h-48 object-cover">
-                    <div class="p-6 space-y-3">
-                        <span class="inline-block text-[10px] font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md uppercase tracking-wider">Sertifikasi</span>
-                        <h3 class="font-bold text-gray-900 text-base leading-snug">
-                            Sertifikasi ISO 27001 untuk Keamanan Sistem Informasi
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            Regional Lampung berhasil mendapatkan sertifikasi ISO 27001:2022 sebagai bukti komitmen dalam menjaga keamanan sistem informasi dan data pelanggan.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-6 pt-0 flex items-center justify-between text-xs">
-                    <a href="#" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
-                        Lihat selengkapnya 
-                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <span class="text-gray-400 text-[11px]">05 Juli 2026</span>
-                </div>
-            </div>
-
-            <!-- Berita 5 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <img src="{{ asset('images/news-2.png') }}" alt="Berita 5" class="w-full h-48 object-cover">
-                    <div class="p-6 space-y-3">
-                        <span class="inline-block text-[10px] font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md uppercase tracking-wider">Penghargaan</span>
-                        <h3 class="font-bold text-gray-900 text-base leading-snug">
-                            Penghargaan Pelayanan Terbaik dari Asosiasi Telekomunikasi Indonesia
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            Regional Office Lampung berhasil menyelesaikan proyek peningkatan kapasitas jaringan...
-                        </p>
-                    </div>
-                </div>
-                <div class="p-6 pt-0 flex items-center justify-between text-xs">
-                    <a href="#" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
-                        Lihat selengkapnya 
-                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <span class="text-gray-400 text-[11px]">20 Juni 2026</span>
-                </div>
-            </div>
-
+            @endforelse
         </div>
-    </section>
 
     <!-- Include Footer -->
     @include('components.footer')

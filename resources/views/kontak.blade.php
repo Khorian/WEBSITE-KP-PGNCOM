@@ -6,7 +6,7 @@
     <title>Kontak Kami - PGASCOM Regional Office Lampung</title>
     
     <!-- Favicon -->
-<link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,7 +36,7 @@
 
     <!-- KONTEN UTAMA: INFORMASI KONTAK & FORM PESAN -->
     <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
             <!-- Bagian Kiri: Informasi Kontak (Lebar 5 Kolom) -->
             <div class="lg:col-span-5 space-y-6">
@@ -66,49 +66,45 @@
             </div>
 
             <!-- Bagian Kanan: Form Kirim Pesan (Lebar 7 Kolom) -->
-            <div class="lg:col-span-7 bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-                <h2 class="text-lg font-bold text-gray-900 mb-6">Kirim Pesan</h2>
+            <div class="lg:col-span-7 bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm">
                 
-                <form action="#" method="POST" class="space-y-4">
+                @if(session('success'))
+                    <div class="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-xl font-semibold">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('kontak.kirim') }}" method="POST" class="space-y-4">
                     @csrf
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Nama Lengkap -->
-                        <div class="space-y-1.5">
-                            <label class="block text-xs font-semibold text-gray-700">Nama Lengkap <span class="text-red-500">*</span></label>
-                            <input type="text" placeholder="Masukan nama Anda" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:bg-white focus:border-blue-600 transition-colors" required>
-                        </div>
-                        <!-- Email -->
-                        <div class="space-y-1.5">
-                            <label class="block text-xs font-semibold text-gray-700">Email <span class="text-red-500">*</span></label>
-                            <input type="email" placeholder="email@anda.com" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:bg-white focus:border-blue-600 transition-colors" required>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                        <input type="text" name="nama" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
                     </div>
 
-                    <!-- Nomor Telepon -->
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-semibold text-gray-700">Nomor Telepon <span class="text-red-500">*</span></label>
-                        <input type="text" placeholder="+62 812-xxxx-xxx" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:bg-white focus:border-blue-600 transition-colors" required>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Alamat Email <span class="text-red-500">*</span></label>
+                        <input type="email" name="email" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
                     </div>
 
-                    <!-- Pesan -->
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-semibold text-gray-700">Pesan <span class="text-red-500">*</span></label>
-                        <textarea rows="4" placeholder="Tuliskan pesan atau pertanyaan anda disini..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:bg-white focus:border-blue-600 transition-colors resize-none" required></textarea>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Subjek Pesan <span class="text-red-500">*</span></label>
+                        <input type="text" name="subjek" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
                     </div>
 
-                    <!-- Tombol Kirim -->
-                    <div class="pt-2">
-                        <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs md:text-sm rounded-xl transition-colors shadow-md shadow-blue-600/20 flex items-center justify-center space-x-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                            <span>Kirim Pesan</span>
-                        </button>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Isi Pesan <span class="text-red-500">*</span></label>
+                        <textarea name="pesan" rows="4" required class="w-full p-4 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600 resize-none"></textarea>
                     </div>
+
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-xl transition shadow-sm">
+                        Kirim Pesan
+                    </button>
                 </form>
             </div>
 
         </div>
 
-<!-- SECTION: LOKASI KANTOR & GOOGLE MAPS -->
+        <!-- SECTION: LOKASI KANTOR & GOOGLE MAPS -->
         <div class="mt-16 space-y-6">
             <div>
                 <h2 class="text-lg font-bold text-gray-900">Lokasi Kantor</h2>
@@ -118,7 +114,7 @@
                 <!-- Google Maps Embed - PGASCOM Regional Office Lampung -->
                 <div class="w-full h-[400px] rounded-2xl overflow-hidden border border-gray-200">
                     <iframe 
-                        src= "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4028.9948742277643!2d105.25327199915412!3d-5.401310369338983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dafa5c877af5%3A0xcba38e036d283c3f!2sKantor%20Pgascom%20Regional%20Office%20Lampung!5e1!3m2!1sid!2sid!4v1785987121707!5m2!1sid!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4028.9948742277643!2d105.25327199915412!3d-5.401310369338983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dafa5c877af5%3A0xcba38e036d283c3f!2sKantor%20Pgascom%20Regional%20Office%20Lampung!5e1!3m2!1sid!2sid!4v1785987121707!5m2!1sid!2sid"
                         width="100%" 
                         height="100%" 
                         style="border:0;" 

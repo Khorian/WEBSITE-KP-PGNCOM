@@ -34,99 +34,46 @@
         </div>
     </section>
 
-    <!-- KONTEN DAFTAR LAYANAN SECTION -->
-    <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <!-- Layanan 1: GITA -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-xs font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md">GITA</span>
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm">G</div>
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg mb-1">Digital Platform & Application</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-4">Digital Platform dan Application</p>
-                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed mb-6">
-                        Service provision and development services for digital software and applications specifically designed to support digital transformation digital in the company's daily operations. These services can be adjusted to meet your company needs, either its built from scratch or redesigned from the existing applications.
-                    </p>
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    @forelse ($layanans as $item)
+        <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+                <!-- Kategori di Atas Logo -->
+                <span class="block text-[10px] font-bold text-blue-600 uppercase tracking-wider mb-3">
+                    {{ $item->kategori }}
+                </span>
+
+                <!-- Logo / Ikon Layanan -->
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4 overflow-hidden">
+                    @if($item->ikon)
+                        <img src="{{ asset($item->ikon) }}" class="w-full h-full object-cover">
+                    @else
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    @endif
                 </div>
-                <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                    Learn More 
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
+
+                <!-- Nama & Deskripsi -->
+                <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $item->nama_layanan }}</h3>
+                <p class="text-xs font-semibold text-slate-700 mb-2">{{ $item->deskripsi_singkat }}</p>
+
+                @if($item->deskripsi_lengkap)
+                    <p class="text-xs text-gray-500 leading-relaxed line-clamp-4">{{ $item->deskripsi_lengkap }}</p>
+                @endif
             </div>
 
-            <!-- Layanan 2: AMBER -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-xs font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md">AMBER</span>
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm">A</div>
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg mb-1">Security Cyber</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-4">Security Cyber</p>
-                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed mb-6">
-                        Security as a Services (sec-aaS) that will protect all of your data from cyber attacks, built the data inside your communications networks and all devices that are connected to the internet and intranet networks.
-                    </p>
-                </div>
-                <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                    Learn More 
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <div class="mt-6 pt-4 border-t border-slate-100">
+                <a href="#" class="text-xs font-bold text-blue-600 hover:underline inline-flex items-center space-x-1">
+                    <span>Learn More</span>
+                    <span>&rsaquo;</span>
                 </a>
             </div>
-
-            <!-- Layanan 3: SORAIA -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-xs font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md">SORAIA</span>
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm">SO</div>
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg mb-1">Smart Radio Communication & Surveillance</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-4">Smart Radio Communication & Surveillance</p>
-                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed mb-6">
-                        SORAIA is a comprehensive service that integrates various important features for communication and monitoring audio/video that are specifically designed to provide comfort, security, and enterprise mobility. This solution ensures communication and supervision reliability to increase effectiveness operational and situational awareness.
-                    </p>
-                </div>
-                <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                    Learn More 
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <!-- Layanan 4: SINTA -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between transition-transform hover:-translate-y-1">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-xs font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md">SINTA</span>
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm">SI</div>
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg mb-1">Information Technology Infrastructure Solutions</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-4">Information Technology Infrastructure Solutions</p>
-                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed mb-6">
-                        SINTA is a comprehensive solution that can be adjusted to the business specific needs in various industries. This solution provided many services including data centers, network devices, and professional services which can help your company in controlling costs, reducing the risk of asset ownership, as well as increasing IT operational productivity and efficiency.
-                    </p>
-                </div>
-                <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                    Learn More 
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <!-- Layanan 5: SISKA (Dibuat melebar ke tengah jika ganjil) -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between transition-transform hover:-translate-y-1 md:col-span-2 max-w-2xl mx-auto w-full">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-xs font-bold px-3 py-1 bg-blue-50 text-blue-600 rounded-md">SISKA</span>
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm">SK</div>
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg mb-1">Telecommunications Infrastructure Solution</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-4">Telecommunications Infrastructure Solution</p>
-                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed mb-6">
-                        SISKA is a comprehensive telecommunications solution providing a specific network with backbone lines and improved fiber-optic services with gas pipeline networks for reliable connectivity.
-                    </p>
-                </div>
+        </div>
+    @empty
+        <div class="col-span-3 text-center py-12 text-gray-400">
+            Belum ada layanan yang dipublikasikan saat ini.
+        </div>
+    @endforelse
+</div>
                 <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
                     Learn More 
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
