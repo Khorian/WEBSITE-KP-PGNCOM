@@ -101,11 +101,11 @@
             <h3 class="text-white font-semibold text-base">Layanan</h3>
             <!-- Diubah ke text-sm -->
             <ul class="space-y-2 text-sm text-gray-400">
-                <li><a href="#" class="hover:text-white transition-colors">GITA</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">AMBER</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">SORAIA</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">SINTA</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">SISKA</a></li>
+                <li><a href="{{ url('/layanan') }}" class="hover:text-white transition-colors">GITA</a></li>
+                <li><a href="{{ url('/layanan') }}" class="hover:text-white transition-colors">AMBER</a></li>
+                <li><a href="{{ url('/layanan') }}" class="hover:text-white transition-colors">SORAIA</a></li>
+                <li><a href="{{ url('/layanan') }}" class="hover:text-white transition-colors">SINTA</a></li>
+                <li><a href="{{ url('/layanan') }}" class="hover:text-white transition-colors">SISKA</a></li>
             </ul>
         </div>
 
