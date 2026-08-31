@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - PT PGASCOM RO LAMPUNG</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Alpine.js untuk fitur toggle password -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -16,12 +18,11 @@
         <div class="hidden lg:flex lg:w-1/2 bg-[#1d70d6] text-white flex-col justify-between p-12 relative overflow-hidden">
             <!-- Header Logo -->
             <div class="flex items-center space-x-3">
-                <div class="bg-white p-2 rounded-md flex items-center justify-center">
-                    <!-- Placeholder Logo PGN COM -->
-                    <span class="text-[#1d70d6] font-bold text-lg tracking-tighter">pgn<span class="text-xs text-blue-400 font-normal">COM</span></span>
-                </div>
+                <div class="bg-white px-2 py-1.5 rounded-lg shadow-sm flex items-center justify-center shrink-0">
+                        <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-6 w-auto object-contain">
+                    </div>
                 <div>
-                    <h2 class="font-bold text-sm tracking-wide leading-tight">PT PGASCOM</h2>
+                    <h2 class="font-bold text-sm tracking-wide leading-tight">PT PGNCOM</h2>
                     <p class="text-[10px] text-blue-200 tracking-wider">REGIONAL OFFICE LAMPUNG</p>
                 </div>
             </div>
