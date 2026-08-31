@@ -19,7 +19,7 @@
             <!-- Header Logo -->
             <div class="flex items-center space-x-3">
                 <div class="bg-white px-2 py-1.5 rounded-lg shadow-sm flex items-center justify-center shrink-0">
-                        <img src="{{ asset('images/logo-PGNcom.png') }}" alt="Logo PGNCOM" class="h-6 w-auto object-contain">
+                        <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGNCOM" class="h-6 w-auto object-contain">
                     </div>
                 <div>
                     <h2 class="font-bold text-sm tracking-wide leading-tight">PT PGNCOM</h2>

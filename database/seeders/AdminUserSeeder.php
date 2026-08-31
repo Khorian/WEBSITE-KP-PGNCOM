@@ -13,7 +13,7 @@ class AdminUserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@pgastelkom.co.id'],
             [
-                'name' => 'Admin PGAS',
+                'name' => 'Admin PGNCOM',
                 'password' => Hash::make('password123'), // Password untuk login admin nanti
             ]
         );
