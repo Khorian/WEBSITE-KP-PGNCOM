@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Layanan - PGAS TELEKOM</title>
+    <title>Kelola Layanan - PGNCOM</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>[x-cloak] { display: none !important; }</style>
@@ -18,10 +20,10 @@
             <div>
                 <div class="p-5 flex items-center space-x-3 border-b border-slate-800/40">
                     <div class="bg-white px-2 py-1.5 rounded-lg shadow-sm flex items-center justify-center shrink-0">
-                        <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-6 w-auto object-contain">
+                        <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGNCOM" class="h-6 w-auto object-contain">
                     </div>
                     <div>
-                        <h2 class="font-black text-base tracking-wide leading-none text-white">PGASCOM</h2>
+                        <h2 class="font-black text-base tracking-wide leading-none text-white">PGNCOM</h2>
                         <p class="text-[9px] text-[#3b82f6] tracking-wider font-bold mt-1">REGIONAL OFFICE LAMPUNG</p>
                     </div>
                 </div>
@@ -37,16 +39,41 @@
             </div>
 
             <div class="p-4 border-t border-slate-800/60 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <img class="w-9 h-9 rounded-full object-cover border border-slate-700" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80" alt="Admin">
-                    <div>
-                        <h4 class="text-xs font-bold text-white">Admin PGAS</h4>
-                        <p class="text-[10px] text-slate-400">Super Admin</p>
-                    </div>
-                </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-slate-400 hover:text-rose-400 p-1 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+    @php
+        // Mengambil nama dari user yang sedang login, atau fallback ke 'Quesha Azarine'
+        $userName = auth()->user()->name ?? 'Quesha Azarine';
+        
+        // Mengambil inisial huruf depan dari nama (misal: Quesha Azarine -> QA)
+        $words = explode(' ', trim($userName));
+        $initials = strtoupper(substr($words[0], 0, 1));
+        if (count($words) > 1) {
+            $initials .= strtoupper(substr(end($words), 0, 1));
+        }
+    @endphp
+
+    <!-- Link ke Beranda Utama dengan Avatar Inisial Dinamis -->
+    <!-- Favicon <a href="{{ route('home') }}" class="flex items-center space-x-3 group hover:opacity-80 transition" title="Kembali ke Beranda Utama">
+        <!-- Bulatan Avatar Inisial -->
+        <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center border border-blue-400 group-hover:border-sky-300 transition shrink-0">
+            {{ $initials }}
+        </div>
+        
+        <!-- Informasi Nama & Role -->
+        <div class="overflow-hidden">
+            <h4 class="text-xs font-bold text-white group-hover:text-sky-400 transition truncate">{{ $userName }}</h4>
+            <p class="text-[10px] text-slate-400"> Admin</p>
+        </div>
+    </a>
+
+    <!-- Tombol Logout -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="text-slate-400 hover:text-rose-400 p-1 transition" title="Keluar / Logout">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            </svg>
+        </button>
+    </form>
                 </form>
             </div>
         </aside>
@@ -79,7 +106,6 @@
                     <select name="kategori" onchange="this.form.submit()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none">
                         <option value="">Kategori: Semua</option>
                         <option value="Produk dan Layanan" {{ request('kategori') == 'Produk dan Layanan' ? 'selected' : '' }}>Produk dan Layanan</option>
-                        <option value="ICT Solution" {{ request('kategori') == 'ICT Solution' ? 'selected' : '' }}>ICT Solution</option>
                     </select>
 
                     <select name="status" onchange="this.form.submit()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none">
@@ -128,11 +154,12 @@
                                             {{ $item->status }}
                                         </span>
                                     </td>
-                                    <td class="p-4 text-center space-x-2">
+                                    <td class="p-4 text-center">
+                                        <!-- Hanya Tombol Hapus Saja -->
                                         <form action="{{ route('admin.layanan.hapus', $item->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus layanan ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-slate-400 hover:text-rose-500 transition" title="Hapus">
+                                            <button type="submit" class="text-slate-400 hover:text-rose-500 transition p-1" title="Hapus Layanan">
                                                 <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                             </button>
                                         </form>

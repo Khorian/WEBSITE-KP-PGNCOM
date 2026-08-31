@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\KontakController;
@@ -12,8 +13,9 @@ use App\Http\Controllers\Admin\ProfilController;
 // ==========================================
 // 1. ROUTE HALAMAN PUBLIK / USER
 // ==========================================
-Route::get('/', function () { return view('home'); })->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil', [ProfilController::class, 'publicIndex'])->name('profil');
+
 Route::get('/layanan', function () {
     $layanans = \App\Models\Layanan::where('status', 'Aktif')->latest()->get();
     return view('layanan', compact('layanans'));
@@ -24,8 +26,7 @@ Route::get('/berita', function () {
     return view('berita', compact('beritas'));
 })->name('berita');
 
-// Route Kontak User & Kirim Pesan
-Route::get('/kontak', function () { return view('kontak'); })->name('kontak');
+Route::get('/kontak', [KontakController::class, 'publicIndex'])->name('kontak');
 Route::post('/kontak/kirim', [KontakController::class, 'storePublic'])->name('kontak.kirim');
 
 
@@ -40,37 +41,38 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // ==========================================
 // 3. ROUTE ADMIN (DIPROTEKSI AUTH)
 // ==========================================
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    // Dashboard & Statis
-   Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/profil', function () { return view('admin.profil'); })->name('admin.profil');
-    Route::get('/pengguna', function () { return view('admin.pengguna'); })->name('admin.pengguna');
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/profil', [ProfilController::class, 'adminIndex'])->name('admin.profil');
-    Route::post('/profil/simpan', [ProfilController::class, 'update'])->name('admin.profil.simpan');
+    // Profil Perusahaan
+    Route::get('/profil', [ProfilController::class, 'adminIndex'])->name('profil');
+    Route::post('/profil/simpan', [ProfilController::class, 'update'])->name('profil.simpan');
 
-    // Route Layanan
-    Route::get('/layanan', [LayananController::class, 'index'])->name('admin.layanan');
-    Route::get('/layanan/tambah', [LayananController::class, 'create'])->name('admin.layanan.tambah');
-    Route::post('/layanan/simpan', [LayananController::class, 'store'])->name('admin.layanan.simpan');
-    Route::delete('/layanan/hapus/{id}', [LayananController::class, 'destroy'])->name('admin.layanan.hapus');
-    Route::post('/layanan/batch-action', [LayananController::class, 'batchAction'])->name('admin.layanan.batch');
+    // Kelola Layanan
+    Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
+    Route::get('/layanan/tambah', [LayananController::class, 'create'])->name('layanan.tambah');
+    Route::post('/layanan/simpan', [LayananController::class, 'store'])->name('layanan.simpan');
+    Route::delete('/layanan/hapus/{id}', [LayananController::class, 'destroy'])->name('layanan.hapus');
+    Route::post('/layanan/batch-action', [LayananController::class, 'batchAction'])->name('layanan.batch');
 
-    // Route Berita
-    Route::get('/berita', [BeritaController::class, 'index'])->name('admin.berita');
-    Route::get('/berita/tambah', [BeritaController::class, 'create'])->name('admin.berita.tambah');
-    Route::post('/berita/simpan', [BeritaController::class, 'store'])->name('admin.berita.simpan');
-    Route::delete('/berita/hapus/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.hapus');
-    Route::post('/berita/batch-action', [BeritaController::class, 'batchAction'])->name('admin.berita.batch');
+    // Kelola Berita
+    Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
+    Route::get('/berita/tambah', [BeritaController::class, 'create'])->name('berita.tambah');
+    Route::post('/berita/simpan', [BeritaController::class, 'store'])->name('berita.simpan');
+    Route::delete('/berita/hapus/{id}', [BeritaController::class, 'destroy'])->name('berita.hapus');
+    Route::post('/berita/batch-action', [BeritaController::class, 'batchAction'])->name('berita.batch');
 
-    // Route Pesan Masuk / Kontak Admin
-    Route::get('/kontak', [KontakController::class, 'index'])->name('admin.kontak');
-    Route::post('/kontak/baca/{id}', [KontakController::class, 'markAsRead'])->name('admin.kontak.baca');
-    Route::delete('/kontak/hapus/{id}', [KontakController::class, 'destroy'])->name('admin.kontak.hapus');
-    Route::post('/kontak/batch-action', [KontakController::class, 'batchAction'])->name('admin.kontak.batch');
+    // Kelola Kontak
+    Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+    Route::post('/kontak/info-update', [KontakController::class, 'updateInfo'])->name('kontak.info_update');
+    Route::post('/kontak/baca/{id}', [KontakController::class, 'markAsRead'])->name('kontak.baca');
+    Route::delete('/kontak/hapus/{id}', [KontakController::class, 'destroy'])->name('kontak.hapus');
+    Route::post('/kontak/batch-action', [KontakController::class, 'batchAction'])->name('kontak.batch');
 
-    // Route Kelola Pengguna
-    Route::get('/pengguna', [PenggunaController::class, 'index'])->name('admin.pengguna');
-    Route::post('/pengguna/simpan', [PenggunaController::class, 'store'])->name('admin.pengguna.simpan');
-    Route::delete('/pengguna/hapus/{id}', [PenggunaController::class, 'destroy'])->name('admin.pengguna.hapus');
+    // Kelola Pengguna
+    Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
+    Route::post('/pengguna/simpan', [PenggunaController::class, 'store'])->name('pengguna.simpan');
+    Route::delete('/pengguna/hapus/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.hapus');
 });

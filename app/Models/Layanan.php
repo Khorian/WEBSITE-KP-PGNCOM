@@ -9,5 +9,12 @@ class Layanan extends Model
 {
     use HasFactory;
 
-    protected $guarded = []; // Mengizinkan semua kolom diisi ke database
+    protected $guarded = [];
+
+    // Method pembantu untuk mengambil kata pertama / singkatan dari nama layanan
+    public static function getSingkatan($nama)
+    {
+        $words = explode(' ', trim($nama));
+        return strtoupper($words[0] ?? 'SERVICE');
+    }
 }

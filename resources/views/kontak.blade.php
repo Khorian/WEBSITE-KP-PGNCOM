@@ -17,7 +17,7 @@
     @include('components.navbar')
 
     <!-- HERO BANNER KONTAK -->
-    <section class="bg-gradient-to-r from-[#0b1c3d] via-blue-700 to-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
+    <section class="bg-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
         <div class="max-w-7xl mx-auto space-y-3">
             <!-- Breadcrumb -->
             <div class="flex items-center space-x-2 text-xs md:text-sm text-gray-300">
@@ -78,22 +78,22 @@
                     @csrf
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
-                        <input type="text" name="nama" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
+                        <input type="text" name="nama" placeholder="Tuliskan nama lengkap" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Alamat Email <span class="text-red-500">*</span></label>
-                        <input type="email" name="email" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
+                        <input type="email" name="email" placeholder="Email@anda.com" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Subjek Pesan <span class="text-red-500">*</span></label>
-                        <input type="text" name="subjek" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
+                        <input type="text" name="subjek" placeholder="Keluhan/layanan/laporan" required class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Isi Pesan <span class="text-red-500">*</span></label>
-                        <textarea name="pesan" rows="4" required class="w-full p-4 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600 resize-none"></textarea>
+                        <textarea name="pesan" rows="4" placeholder="Tuliskan pesan atau pertanyaan disini.." required class="w-full p-4 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:border-blue-600 resize-none"></textarea>
                     </div>
 
                     <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-xl transition shadow-sm">

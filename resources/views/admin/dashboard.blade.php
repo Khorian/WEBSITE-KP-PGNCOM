@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - PGASCOM</title>
+    <title>Dashboard Admin - PGNCOM</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100 font-sans antialiased text-slate-800">
@@ -15,10 +17,10 @@
             <div>
                 <div class="p-5 flex items-center space-x-3 border-b border-slate-800/40">
                     <div class="bg-white px-2 py-1.5 rounded-lg shadow-sm flex items-center justify-center shrink-0">
-                        <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGASCOM" class="h-6 w-auto object-contain">
+                        <img src="{{ asset('images/logo-pgascom.png') }}" alt="Logo PGNCOMCOM" class="h-6 w-auto object-contain">
                     </div>
                     <div>
-                        <h2 class="font-black text-base tracking-wide leading-none text-white">PGASCOM</h2>
+                        <h2 class="font-black text-base tracking-wide leading-none text-white">PGNCOM</h2>
                         <p class="text-[9px] text-[#3b82f6] tracking-wider font-bold mt-1">REGIONAL OFFICE LAMPUNG</p>
                     </div>
                 </div>
@@ -34,16 +36,41 @@
             </div>
 
             <div class="p-4 border-t border-slate-800/60 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <img class="w-9 h-9 rounded-full object-cover border border-slate-700" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80" alt="Admin">
-                    <div>
-                        <h4 class="text-xs font-bold text-white">{{ auth()->user()->name ?? 'Admin PGAS' }}</h4>
-                        <p class="text-[10px] text-slate-400">Super Admin</p>
-                    </div>
-                </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-slate-400 hover:text-rose-400 p-1 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+    @php
+        // Mengambil nama dari user yang sedang login, atau fallback ke 'Quesha Azarine'
+        $userName = auth()->user()->name ?? 'Quesha Azarine';
+        
+        // Mengambil inisial huruf depan dari nama (misal: Quesha Azarine -> QA)
+        $words = explode(' ', trim($userName));
+        $initials = strtoupper(substr($words[0], 0, 1));
+        if (count($words) > 1) {
+            $initials .= strtoupper(substr(end($words), 0, 1));
+        }
+    @endphp
+
+    <!-- Link ke Beranda Utama dengan Avatar Inisial Dinamis -->
+    <!-- Favicon <a href="{{ route('home') }}" class="flex items-center space-x-3 group hover:opacity-80 transition" title="Kembali ke Beranda Utama">
+        <!-- Bulatan Avatar Inisial -->
+        <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center border border-blue-400 group-hover:border-sky-300 transition shrink-0">
+            {{ $initials }}
+        </div>
+        
+        <!-- Informasi Nama & Role -->
+        <div class="overflow-hidden">
+            <h4 class="text-xs font-bold text-white group-hover:text-sky-400 transition truncate">{{ $userName }}</h4>
+            <p class="text-[10px] text-slate-400"> Admin</p>
+        </div>
+    </a>
+
+    <!-- Tombol Logout -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="text-slate-400 hover:text-rose-400 p-1 transition" title="Keluar / Logout">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            </svg>
+        </button>
+    </form>
                 </form>
             </div>
         </aside>
@@ -55,7 +82,7 @@
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <h1 class="text-2xl font-bold text-slate-900">Selamat Datang, {{ auth()->user()->name ?? 'Super Admin' }}</h1>
-                    <p class="text-xs text-slate-500 mt-1">Berikut ringkasan data website PGASCOM Regional Lampung.</p>
+                    <p class="text-xs text-slate-500 mt-1">Berikut ringkasan data website PGNCOM Regional Lampung.</p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs font-semibold text-slate-600 shadow-sm flex items-center space-x-2">
                     <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -118,7 +145,7 @@
                                 <tr class="hover:bg-slate-50/80 transition">
                                     <td class="p-4 font-bold text-slate-900 max-w-xs truncate">{{ $item->judul }}</td>
                                     <td class="p-4 text-slate-500">{{ $item->kategori }}</td>
-                                    <td class="p-4 text-slate-500">{{ $item->penulis ?? 'Admin PGAS' }}</td>
+                                    <td class="p-4 text-slate-500">{{ $item->penulis ?? 'Admin PGN' }}</td>
                                     <td class="p-4 text-slate-500">{{ $item->created_at ? $item->created_at->format('d M Y') : '-' }}</td>
                                     <td class="p-4">
                                         <span class="px-2.5 py-1 rounded-md text-[10px] font-bold {{ $item->status == 'Publikasi' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600' }}">

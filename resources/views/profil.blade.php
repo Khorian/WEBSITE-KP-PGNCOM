@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Perusahaan - PGASCOM Regional Office Lampung</title>
+    <title>Profil Perusahaan - PGNCOM Regional Office Lampung</title>
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -12,7 +12,7 @@
     @include('components.navbar')
 
     <!-- HERO BANNER -->
-    <section class="bg-gradient-to-r from-[#0b1c3d] via-blue-700 to-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
+    <section  class="bg-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
         <div class="max-w-7xl mx-auto space-y-3">
             <div class="flex items-center space-x-2 text-xs md:text-sm text-gray-300">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">Beranda</a>
@@ -30,7 +30,7 @@
     <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto">
         <div class="text-center mb-12">
             <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">SEJARAH SINGKAT</span>
-            <h2 class="text-2xl md:text-3xl font-black text-gray-900 mt-1">{{ $profil->judul_sejarah }}</h2>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mt-1">{{ $profil->judul_sejarah }}</h2>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -47,7 +47,7 @@
     <!-- VISI -->
     <section class="py-12 px-6 md:px-12 max-w-5xl mx-auto">
         <div class="bg-blue-600 text-white p-10 md:p-14 rounded-3xl shadow-lg text-center space-y-4">
-            <span class="text-xs font-bold tracking-widest uppercase text-blue-200">VISI</span>
+            <span class="text-2xl font-bold tracking-tight text-white-900">Visi</span>
             <p class="text-base md:text-xl font-medium italic leading-relaxed max-w-3xl mx-auto">
                 "{{ $profil->visi }}"
             </p>
@@ -57,7 +57,7 @@
     <!-- MISI -->
     <section class="py-12 px-6 md:px-12 max-w-7xl mx-auto">
         <div class="text-center mb-10">
-            <h2 class="text-2xl font-black text-gray-900">Misi</h2>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Misi</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @foreach($profil->misi ?? [] as $index => $misiItem)
@@ -79,9 +79,14 @@
             <p class="text-xs text-gray-500 mt-0.5">PT PGAS TELEKOMUNIKASI NUSANTARA REGIONAL OFFICE – LAMPUNG</p>
         </div>
 
-        <div class="max-w-md mx-auto mb-8 bg-slate-900 text-white rounded-2xl text-center overflow-hidden shadow-md">
-            <div class="bg-slate-800 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-300">MANAGER RO LAMPUNG</div>
-            <div class="py-3 text-xs font-bold text-white">{{ $profil->manager_nama }}</div>
+        <!-- MANAGER RO LAMPUNG (Disesuaikan warnanya agar sama) -->
+        <div class="max-w-md mx-auto mb-8 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+            <div class="bg-[#0b1c3d] text-white py-2 px-3 text-center text-[10px] font-bold tracking-wider uppercase">
+                MANAGER RO LAMPUNG
+            </div>
+            <div class="p-3 text-center bg-slate-50/50">
+                <p class="text-xs font-bold text-gray-800">{{ $profil->manager_nama }}</p>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -112,12 +117,6 @@
         </div>
     </section>
 
-    <!-- NILAI PERUSAHAAN -->
-    <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="text-center mb-10">
-            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">NILAI PERUSAHAAN</span>
-            <h2 class="text-2xl font-black text-gray-900 mt-1">Nilai yang Kami Junjung Tinggi</h2>
-        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($profil->nilai_perusahaan ?? [] as $val)

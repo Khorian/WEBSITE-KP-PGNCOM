@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - PGASCOM Regional Office Lampung</title>
+    <title>Beranda - PGNCOM Regional Office Lampung</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,9 +14,12 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         .swiper-button-next::after, .swiper-button-prev::after {
-            display: none; /* Menyembunyikan panah bawaan swiper agar bisa pakai kustomisasi tombol sendiri */
+            display: none;
         }
     </style>
 </head>
@@ -25,42 +28,41 @@
     <!-- Include Navbar -->
     @include('components.navbar')
 
-    <!-- HERO SECTION -->
-    <section class="bg-gradient-to-r from-[#0b1c3d] via-blue-700 to-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
-        <div data-aos="zoom-in" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="inline-block px-3 py-1 bg-blue-900/60 text-blue-400 text-xs font-semibold rounded-full tracking-wide uppercase border border-blue-800">
-                    Solusi ICT & Telekomunikasi
-                </span>
-                <h1 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-                    Solusi ICT Terpercaya untuk Lampung
-                </h1>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed">
-                    PT PGAS Telekomunikasi Nusantara Regional Lampung menyediakan layanan telekomunikasi dan infrastruktur ICT berkualitas tinggi untuk mendukung pertumbuhan bisnis di seluruh Provinsi Lampung.
-                </p>
-                <div>
-                    <a href="#layanan" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors shadow-lg shadow-blue-600/30">
-                        Pelajari lebih lanjut
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-900/50">
-                    <img src="{{ asset('images/pgncom.png') }}" alt="Gedung PGASCOM Lampung" class="w-full h-auto object-cover">
-                </div>
+<!-- HERO SECTION -->
+<section class="bg-blue-600 text-white py-16 px-6 md:px-12 relative overflow-hidden">
+    <div data-aos="zoom-in" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+            <span class="inline-block px-3 py-1 bg-blue-700/60 text-blue-200 text-xs font-semibold rounded-full tracking-wide uppercase border border-blue-500/30">
+                Solusi ICT & Telekomunikasi
+            </span>
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+                Solusi ICT Terpercaya untuk Lampung
+            </h1>
+            <p class="text-blue-100 text-sm md:text-base leading-relaxed">
+                PT PGAS Telekomunikasi Nusantara Regional Lampung menyediakan layanan telekomunikasi dan infrastruktur ICT berkualitas tinggi untuk mendukung pertumbuhan bisnis di seluruh Provinsi Lampung.
+            </p>
+            <div>
+    <a href="{{ url('/profil') }}" class="inline-flex items-center px-6 py-3 bg-white text-blue-600 hover:bg-blue-50 font-medium text-sm rounded-lg transition-colors shadow-lg">
+        Pelajari lebih lanjut
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+    </a>
+</div>
+        </div>
+        <div class="relative">
+            <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-500/30">
+                <img src="{{ asset('images/pgncom.png') }}" alt="Gedung PGASCOM Lampung" class="w-full h-auto object-cover">
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- PROFIL PERUSAHAAN SECTION -->
-    <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center">
+    <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center" data-aos="fade-up">
         <span class="text-blue-600 text-xs font-semibold uppercase tracking-widest">Profil Perusahaan</span>
-        <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">PT PGAS Telekomunikasi Nusantara</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">PT PGN Telekomunikasi Nusantara</h2>
         <p class="text-gray-600 text-sm md:text-base max-w-3xl mx-auto leading-relaxed mb-16">
-            PT PGAS Telekomunikasi Nusantara Regional Lampung adalah anak perusahaan PT PGN Tbk yang bergerak di bidang telekomunikasi dan ICT. Dengan pengalaman lebih dari 20 tahun, kami telah melayani kebutuhan korporasi di seluruh Provinsi Lampung. Kami berkomitmen untuk menghadirkan solusi digital terbaik yang mendukung pertumbuhan bisnis pelanggan melalui infrastruktur handal, teknologi terkini, dan tim profesional tersertifikasi.
+            PT PGN Telekomunikasi Nusantara Regional Lampung adalah anak perusahaan PT PGN Tbk yang bergerak di bidang telekomunikasi dan ICT. Dengan pengalaman lebih dari 20 tahun, kami telah melayani kebutuhan korporasi di seluruh Provinsi Lampung. Kami berkomitmen untuk menghadirkan solusi digital terbaik yang mendukung pertumbuhan bisnis pelanggan melalui infrastruktur handal, teknologi terkini, dan tim profesional tersertifikasi.
         </p>
 
         <!-- Visi & Misi Card -->
@@ -72,7 +74,7 @@
                 </div>
                 <h3 class="font-bold text-lg text-gray-900 mb-2">Visi</h3>
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    "Menjadi perusahaan solusi ICT terdepan dan terkemuka yang mendukung pertumbuhan ekonomi digital di Indonesia khususnya tahun 2030."
+                    "{{ $profil->visi ?? 'Menjadi perusahaan solusi ICT terdepan dan terkemuka yang mendukung pertumbuhan ekonomi digital di Indonesia khususnya tahun 2030.' }}"
                 </p>
             </div>
 
@@ -83,114 +85,75 @@
                 </div>
                 <h3 class="font-bold text-lg text-gray-900 mb-2">Misi</h3>
                 <ul class="text-gray-600 text-xs md:text-sm space-y-2 leading-relaxed list-disc list-inside">
-                    <li>Menyediakan infrastruktur telekomunikasi berkualitas tinggi yang menjangkau seluruh wilayah Lampung.</li>
-                    <li>Meningkatkan adopsi ICT korporasi guna mendukung transformasi digital berteknologi tinggi.</li>
-                    <li>Mengembangkan SDM yang kompeten, profesional, dan berorientasi pada kepuasan pelanggan.</li>
-                    <li>Memperkuat komitmen strategis yang saling menguntungkan dengan seluruh pemangku kepentingan.</li>
-                    <li>Mendukung tata kelola perusahaan yang baik dan mewujudkan program GCG yang berkelanjutan.</li>
+                    @forelse($profil->misi ?? [] as $misiItem)
+                        @if(!empty($misiItem))
+                            <li>{{ $misiItem }}</li>
+                        @endif
+                    @empty
+                        <li>Menyediakan infrastruktur telekomunikasi berkualitas tinggi yang menjangkau seluruh wilayah Lampung.</li>
+                        <li>Meningkatkan adopsi ICT korporasi guna mendukung transformasi digital berteknologi tinggi.</li>
+                        <li>Mengembangkan SDM yang kompeten, profesional, dan berorientasi pada kepuasan pelanggan.</li>
+                    @endforelse
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- LAYANAN SECTION (DENGAN CAROUSEL SWIPER) -->
-    <section id="layanan" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+    <!-- LAYANAN SECTION (DINAMIS SAMA SEPERTI ADMIN) -->
+    <section id="layanan" class="py-20 px-6 md:px-12 max-w-7xl mx-auto" data-aos="fade-up">
         <div class="text-center mb-12">
             <span class="text-blue-600 text-xs font-semibold uppercase tracking-widest">Layanan Kami</span>
             <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-2">Solusi Terpadu ICT & Telekomunikasi</h2>
             <p class="text-gray-600 text-sm mt-3 max-w-2xl mx-auto">Kami membantu merancang, mengelola, dan melindungi infrastruktur teknologi yang mendukung operasional perusahaan dan layanan publik di seluruh Lampung.</p>
         </div>
 
-        <!-- Container Carousel -->
         <div class="relative px-4">
-            <!-- Swiper Main Container -->
             <div class="swiper layananSwiper py-4">
                 <div class="swiper-wrapper">
-                    
-                    <!-- Card 1: GITA -->
-                    <div class="swiper-slide h-auto">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full transition-transform hover:-translate-y-1">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-md">GITA</span>
-                                    <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">G</div>
-                                </div>
-                                <h3 class="font-bold text-gray-900 text-base mb-2">Digital Platform & Application</h3>
-                                <p class="text-gray-600 text-xs leading-relaxed mb-6">
-                                    Solusi untuk kebutuhan development server baik for digital platform and application, dedicated connection to global internet, interconnection data center, data communications, and cloud services. Designed to build smart ecosystem and integrated office automation.
-                                </p>
-                            </div>
-                            <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                                Learn More 
-                                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </a>
-                        </div>
-                    </div>
+                    @forelse($layanans as $layanan)
+                        @php
+                            $namaLayanan = $layanan->nama_layanan ?? $layanan->nama ?? 'Layanan';
+                            $namaSingkat = strtoupper(explode(' ', trim($namaLayanan))[0] ?? 'LAYANAN');
+                            $kategoriLayanan = $layanan->kategori ?? 'Produk dan Layanan';
+                            $deskripsiLayanan = $layanan->deskripsi_singkat ?? $layanan->deskripsi ?? '';
+                        @endphp
 
-                    <!-- Card 2: AMBER -->
-                    <div class="swiper-slide h-auto">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full transition-transform hover:-translate-y-1">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-md">AMBER</span>
-                                    <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">A</div>
+                        <div class="swiper-slide h-auto">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full transition-transform hover:-translate-y-1">
+                                <div>
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-[10px] font-bold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-md uppercase">
+                                            {{ $kategoriLayanan }}
+                                        </span>
+                                        <div class="w-10 h-10 rounded-xl bg-blue-50/80 p-1.5 flex items-center justify-center border border-blue-100 overflow-hidden">
+                                            @if($layanan->ikon)
+                                                <img src="{{ asset($layanan->ikon) }}" alt="{{ $namaSingkat }}" class="w-full h-full object-contain">
+                                            @else
+                                                <span class="text-blue-700 font-black text-xs">
+                                                    {{ strtoupper(substr($namaSingkat, 0, 2)) }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <h3 class="font-bold text-gray-900 text-base mb-1">{{ $namaSingkat }}</h3>
+                                    <p class="text-xs font-semibold text-gray-500 mb-3">{{ $namaLayanan }}</p>
+                                    <p class="text-gray-600 text-xs leading-relaxed mb-6 line-clamp-4">
+                                        {{ $deskripsiLayanan }}
+                                    </p>
                                 </div>
-                                <h3 class="font-bold text-gray-900 text-base mb-2">Network & Cyber</h3>
-                                <p class="text-gray-600 text-xs leading-relaxed mb-6">
-                                    Securing all of your data from cyber attacks, build the ideal business communication networks and infrastructure that are connected to the national and internet networks.
-                                </p>
+                                <a href="{{ route('layanan') }}" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
+                                    Learn More 
+                                    <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </a>
                             </div>
-                            <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                                Learn More 
-                                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </a>
                         </div>
-                    </div>
-
-                    <!-- Card 3: SINTA -->
-                    <div class="swiper-slide h-auto">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full transition-transform hover:-translate-y-1">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-md">SINTA</span>
-                                    <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">S</div>
-                                </div>
-                                <h3 class="font-bold text-gray-900 text-base mb-2">Information Technology Infrastructure</h3>
-                                <p class="text-gray-600 text-xs leading-relaxed mb-6">
-                                    SINTA is a comprehensive service that provides expert advice in the success specific needs in various industries. This creates innovative many services including architecture network design, data professional services, enterprise hubs and complete IT solutions, data structure, and IT assess of operational productivity and efficiency.
-                                </p>
-                            </div>
-                            <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                                Learn More 
-                                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: SORAIA (Tambahan Contoh Layanan) -->
-                    <div class="swiper-slide h-auto">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full transition-transform hover:-translate-y-1">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-md">SORAIA</span>
-                                    <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">SO</div>
-                                </div>
-                                <h3 class="font-bold text-gray-900 text-base mb-2">Smart Office & IoT Solutions</h3>
-                                <p class="text-gray-600 text-xs leading-relaxed mb-6">
-                                    Penyediaan ekosistem Internet of Things (IoT) untuk otomatisasi kantor pintar, efisiensi energi, dan pengelolaan fasilitas gedung secara terintegrasi dan real-time.
-                                </p>
-                            </div>
-                            <a href="#" class="inline-flex items-center text-blue-600 text-xs font-semibold hover:text-blue-700">
-                                Learn More 
-                                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </a>
-                        </div>
-                    </div>
-
+                    @empty
+                        <div class="swiper-slide w-full text-center py-12 text-xs text-gray-400">Belum ada layanan aktif.</div>
+                    @endforelse
                 </div>
             </div>
 
-            <!-- Tombol Navigasi Carousel Kustom -->
+            <!-- Tombol Navigasi Swiper Kustom -->
             <div class="flex justify-center items-center space-x-4 mt-8">
                 <button class="swiper-button-prev-custom w-10 h-10 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors shadow-sm focus:outline-none">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -202,71 +165,78 @@
         </div>
     </section>
 
-    <!-- INFORMASI TERKINI SECTION -->
-    <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-white rounded-3xl mb-12 shadow-sm border border-gray-100">
-        <div class="text-center mb-12">
-            <span class="text-blue-600 text-xs font-semibold uppercase tracking-widest">Berita & Kegiatan</span>
-            <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-2">Informasi Terkini</h2>
-            <p class="text-gray-500 text-xs mt-1">Lihat semua/ports ></p>
+    <!-- INFORMASI TERKINI SECTION (DINAMIS DARI KELOLA BERITA ADMIN) -->
+    <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-white rounded-3xl mb-12 shadow-sm border border-gray-100" data-aos="fade-up">
+        <div class="flex items-center justify-between mb-12">
+            <div>
+                <span class="text-blue-600 text-xs font-semibold uppercase tracking-widest block">Berita & Kegiatan</span>
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-1">Informasi Terkini</h2>
+            </div>
+            <a href="{{ route('berita') }}" class="text-xs font-bold text-blue-600 hover:underline inline-flex items-center space-x-1">
+                <span>Lihat Semua Berita</span>
+                <span>&rarr;</span>
+            </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Berita 1 -->
-            <div class="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50 flex flex-col">
-                <img src="{{ asset('images/news-1.png') }}" alt="News 1" class="w-full h-48 object-cover">
-                <div class="p-6 flex flex-col justify-between flex-grow">
-                    <div>
-                        <div class="flex justify-between items-center text-[10px] text-gray-500 mb-2">
-                            <span class="text-blue-600 font-semibold">Infrastructure & Network</span>
-                            <span>Oct 12, 2025</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug">
-                            PGAS Telekom Nusantara Expands Backhaul Capacity Along Sumatra's Corridors
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            To support growing demand for enterprise solutions, we have expanded high-speed backbone channels with 400G optical lines.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @forelse($beritas as $item)
+                @php
+                    $gambarRaw = trim($item->gambar ?? $item->foto ?? '');
+                    $gambarUrl = null;
 
-            <!-- Berita 2 -->
-            <div class="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50 flex flex-col">
-                <img src="{{ asset('images/news-2.png') }}" alt="News 2" class="w-full h-48 object-cover">
-                <div class="p-6 flex flex-col justify-between flex-grow">
-                    <div>
-                        <div class="flex justify-between items-center text-[10px] text-gray-500 mb-2">
-                            <span class="text-blue-600 font-semibold">Cyber Article</span>
-                            <span>Sep 28, 2025</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug">
-                            Securing SCADA Platforms Cybersecurity Protocols in the Energy Sector
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            An in-depth study of enterprise SCADA-based protocols ensuring critical infrastructure-targeted incidents remain under strict scrutiny.
-                        </p>
-                    </div>
-                </div>
-            </div>
+                    if (!empty($gambarRaw)) {
+                        if (filter_var($gambarRaw, FILTER_VALIDATE_URL)) {
+                            $gambarUrl = $gambarRaw;
+                        } elseif (file_exists(public_path($gambarRaw))) {
+                            $gambarUrl = asset($gambarRaw);
+                        } elseif (file_exists(public_path('images/' . $gambarRaw))) {
+                            $gambarUrl = asset('images/' . $gambarRaw);
+                        } elseif (file_exists(public_path('storage/' . $gambarRaw))) {
+                            $gambarUrl = asset('storage/' . $gambarRaw);
+                        } else {
+                            $gambarUrl = asset($gambarRaw);
+                        }
+                    }
+                @endphp
 
-            <!-- Berita 3 -->
-            <div class="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50 flex flex-col">
-                <img src="{{ asset('images/news-3.png') }}" alt="News 3" class="w-full h-48 object-cover">
-                <div class="p-6 flex flex-col justify-between flex-grow">
+                <div class="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50 flex flex-col justify-between hover:shadow-md transition">
                     <div>
-                        <div class="flex justify-between items-center text-[10px] text-gray-500 mb-2">
-                            <span class="text-blue-600 font-semibold">Client Program</span>
-                            <span>Dec 15, 2025</span>
+                        <!-- Gambar Berita dengan Fallback Logo PGASCOM -->
+                        <div class="w-full h-48 bg-slate-100 overflow-hidden relative border-b border-gray-100 flex items-center justify-center p-2">
+                            @if($gambarUrl)
+                                <img src="{{ $gambarUrl }}" 
+                                     alt="{{ $item->judul }}" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.onerror=null; this.src='{{ asset('images/logo-pgascom.png') }}'; this.className='max-h-24 w-auto object-contain opacity-80';">
+                            @else
+                                <img src="{{ asset('images/logo-pgascom.png') }}" 
+                                     alt="PGASCOM" 
+                                     class="max-h-24 w-auto object-contain opacity-80">
+                            @endif
                         </div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug">
-                            Empowering Rural Education: Free Internet Access for Southern Lampung Villages
-                        </h3>
-                        <p class="text-gray-600 text-xs leading-relaxed">
-                            As part of our initiative, access to digital tools creates structured, safe entry points for all schools in remote regions.
-                        </p>
+
+                        <!-- Konten Berita -->
+                        <div class="p-6">
+                            <div class="flex justify-between items-center text-[10px] text-gray-500 mb-2">
+                                <span class="text-blue-600 font-semibold uppercase tracking-wider">{{ $item->kategori ?? 'Kegiatan' }}</span>
+                                <span>{{ $item->created_at ? \Carbon\Carbon::parse($item->created_at)->format('d M Y') : '-' }}</span>
+                            </div>
+                            <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug line-clamp-2">
+                                {{ $item->judul }}
+                            </h3>
+                            <p class="text-gray-600 text-xs leading-relaxed line-clamp-3">
+                                {{ strip_tags($item->isi ?? $item->deskripsi ?? '') }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="{{ route('berita') }}" class="text-xs font-bold text-blue-600 hover:underline">Baca Selengkapnya &rarr;</a>
                     </div>
                 </div>
-            </div>
+            @empty
+                <div class="col-span-3 text-center py-12 text-xs text-gray-400">Belum ada berita yang dipublikasikan.</div>
+            @endforelse
         </div>
     </section>
 
@@ -285,23 +255,19 @@
                 prevEl: '.swiper-button-prev-custom',
             },
             breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
             },
         });
     </script>
 
     <!-- AOS JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 800, // Durasi animasi dalam milidetik (0.8 detik)
-    once: true,    // Animasi hanya berjalan sekali ketika discroll pertama kali
-  });
-</script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
 </body>
 </html>

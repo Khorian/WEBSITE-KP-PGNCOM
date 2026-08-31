@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - PT PGASCOM RO LAMPUNG</title>
+    <title>Login Admin - PT PGNCOM RO LAMPUNG</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Alpine.js untuk fitur toggle password -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -12,16 +14,15 @@
 
     <div class="flex w-full min-h-screen bg-white">
         
-        <!-- Sisi Kiri: Panel Biru -->
+       <!-- Sisi Kiri: Panel Biru -->
         <div class="hidden lg:flex lg:w-1/2 bg-[#1d70d6] text-white flex-col justify-between p-12 relative overflow-hidden">
             <!-- Header Logo -->
             <div class="flex items-center space-x-3">
-                <div class="bg-white p-2 rounded-md flex items-center justify-center">
-                    <!-- Placeholder Logo PGN COM -->
-                    <span class="text-[#1d70d6] font-bold text-lg tracking-tighter">pgn<span class="text-xs text-blue-400 font-normal">COM</span></span>
-                </div>
+                <div class="bg-white px-2 py-1.5 rounded-lg shadow-sm flex items-center justify-center shrink-0">
+                        <img src="{{ asset('images/logo-PGNcom.png') }}" alt="Logo PGNCOM" class="h-6 w-auto object-contain">
+                    </div>
                 <div>
-                    <h2 class="font-bold text-sm tracking-wide leading-tight">PT PGASCOM</h2>
+                    <h2 class="font-bold text-sm tracking-wide leading-tight">PT PGNCOM</h2>
                     <p class="text-[10px] text-blue-200 tracking-wider">REGIONAL OFFICE LAMPUNG</p>
                 </div>
             </div>
@@ -29,12 +30,12 @@
             <!-- Content Tengah -->
             <div class="my-auto">
                 <h1 class="text-4xl font-extrabold tracking-wide mb-2">DASHBOARD ADMIN</h1>
-                <p class="text-blue-100 text-sm font-light tracking-wide">PT PGASCOM REGIONAL OFFICE LAMPUNG</p>
+                <p class="text-blue-100 text-sm font-light tracking-wide">PT PGNCOM REGIONAL OFFICE LAMPUNG</p>
             </div>
 
             <!-- Footer Kiri -->
             <div class="text-xs text-blue-200 opacity-80">
-                @2026 PT PGASCOM RO LAMPUNG
+                @2026 PT PGNCOM RO LAMPUNG
             </div>
         </div>
 
@@ -64,7 +65,7 @@
                             </div>
                             <input type="email" id="email" name="email" value="{{ old('email') }}" required 
                                 class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-blue-500 transition-colors text-sm" 
-                                placeholder="admin@pgastelkom.co.id">
+                                placeholder="admin@PGNtelkom.co.id">
                         </div>
                         @error('email')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -119,7 +120,7 @@
 
                 <!-- Footer Kanan (Tampil di mobile / tablet) -->
                 <div class="mt-8 text-center text-xs text-slate-400">
-                    © 2026 PT PGASCOM RO LAMPUNG
+                    © 2026 PT PGNCOM RO LAMPUNG
                 </div>
 
             </div>

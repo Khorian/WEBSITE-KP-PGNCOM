@@ -77,6 +77,63 @@ class LayananController extends Controller
         return redirect()->route('admin.layanan')->with('success', 'Layanan berhasil ditambahkan!');
     }
 
+    public function edit($id)
+    {
+        $layanan = Layanan::findOrFail($id);
+        return view('admin.layanan_edit', compact('layanan'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $layanan = Layanan::findOrFail($id);
+
+        $request->validate([
+            'nama_layanan' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'deskripsi_singkat' => 'required|string',
+            'status' => 'required|in:Aktif,Nonaktif',
+            'ikon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+        ]);
+
+        $slug = Str::slug($request->nama_layanan);
+        $originalSlug = $slug;
+        $count = 1;
+        while (Layanan::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
+        $data = [
+            'nama_layanan' => $request->nama_layanan,
+            'slug' => $slug,
+            'kategori' => $request->kategori,
+            'deskripsi_singkat' => $request->deskripsi_singkat,
+            'deskripsi_lengkap' => $request->deskripsi_lengkap ?? $layanan->deskripsi_lengkap,
+            'status' => $request->status,
+        ];
+
+        // Jika ada ikon baru yang diunggah
+        if ($request->hasFile('ikon')) {
+            // Hapus ikon lama jika ada
+            if ($layanan->ikon && file_exists(public_path($layanan->ikon))) {
+                unlink(public_path($layanan->ikon));
+            }
+
+            $file = $request->file('ikon');
+            $iconName = time() . '_' . $slug . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/layanan');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            $file->move($destinationPath, $iconName);
+            $data['ikon'] = 'uploads/layanan/' . $iconName;
+        }
+
+        $layanan->update($data);
+
+        return redirect()->route('admin.layanan')->with('success', 'Layanan berhasil diperbarui!');
+    }
+
     public function destroy($id)
     {
         $layanan = Layanan::findOrFail($id);
